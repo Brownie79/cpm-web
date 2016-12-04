@@ -1,7 +1,44 @@
-<form>
+<style>
+    .input-field{
+        color:white;
+    }
+    .addconf{
+        margin-top:20px;
+    }
+</style>
 
-
+<form class="container addconf">
+    <div class="row">
+        <div class="input-field col s8">
+            <input id="eventN" type="text" class="validate"><label for="event_name">Event Name</label>
+        </div>
+        <div class="file-field input-field right">
+            <div class="btn">
+                <span>Event Image Upload</span>
+                <input type="file">
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="input-field col s8">
+            <input id="eventAddr" type="text" class="validate"><label for="event_address">Address</label>
+        </div>
+        <div class="input-field col s4">
+            <input type="date" class="datepicker">
+        </div>
+    </div>
 </form>
+
+<!--{
+    "eventName": "Chicago Blockchain Developers Conference",
+	"organizer" : "eden69420", 
+    "address" : "1871 Merchandise Mart",
+    "date" : "11-22-2016",
+    "attendees" : "eden69420",
+    "image" : "http://i.imgur.com/4SnnBQZ.png",
+    "description": "this is an event description"
+}-->
 
 <!--
 { 
@@ -12,3 +49,4 @@
     "conferences" : [] 
 }
 -->
+
