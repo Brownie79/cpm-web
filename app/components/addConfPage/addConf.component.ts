@@ -1,16 +1,34 @@
 import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
     moduleId: module.id,
     selector: 'addConf',
     templateUrl: 'addConf.html'
-});
+})
 
+//eventName,eventImage,eventAddress,eventDate,eventDescription
 export class AddConfPage {
-    constructor(){
-        //console.log("addConf loaded");
+    public addConfForm = this.fb.group({
+        eventName: ["", Validators.required],
+        eventImage: ["", Validators.required],
+        eventAddress: ["", Validators.required],
+        eventDate: ["", Validators.required],
+        eventDescription: ["", Validators.required],
+    });
+
+    constructor(public fb: FormBuilder){ }
+
+    addConf(event){
+        console.log(event);
     }
 
+    ngAfterViewInit(){
+        window['jQuery']('.datepicker').pickadate({
+            selectMonths: true,
+            selectYears: 15
+        });
+    }
  } 
  
 
