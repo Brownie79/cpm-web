@@ -1,0 +1,6 @@
+<li id="loggedIn" *ngIf="isLoggedIn == false" id="google-login-button" class="g-signin2" data-onsuccess="onSignIn" style="margin-top: 5px"></li>
+
+<li id="loggedIn" *ngIf="isLoggedIn"><a routerLink="/addEvent">Add Event</a></li>
+<li id="loggedIn" *ngIf="isLoggedIn"><a >My Events</a></li>
+<li id="loggedIn" *ngIf="isLoggedIn"><a >{{user.fName}}</a></li>
+<li id="loggedIn" *ngIf="isLoggedIn"><a (click)="signOut(); isLoggedIn = false;">Log Out</a></li>
