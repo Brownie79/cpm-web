@@ -19,7 +19,7 @@ export class AddConfPage {
 
     constructor(public fb: FormBuilder){ }
 
-    addConf(event){
+    addConf(event: any){
         console.log(event);
     }
 
