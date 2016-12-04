@@ -11,12 +11,6 @@ export class AddConfPage {
         //console.log("addConf loaded");
     }
 
-    /*ngAfterViewInit(){
-        /*window['jQuery']('.datepicker').pickadate({
-            selectMonths: true,
-            selectYears: 15
-        });*/
-    }*/
  } 
  
 
