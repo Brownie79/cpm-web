@@ -1,19 +1,18 @@
 import { Component } from '@angular/core';
-import { EventsService } from '../../services/events.service'; 
+import { ServerService } from '../../services/server.service'; 
 
 @Component({
     moduleId: module.id,
     selector: 'events',
-    templateUrl: 'events.html',
-    providers: [ EventsService ]
+    templateUrl: 'events.html'
 })
 
 export class EventsPage {
     events: Event[];
 
-    constructor(private eventsService: EventsService){
+    constructor(private serverService: ServerService){
         console.log("events loaded");
-        this.eventsService.getAllEvents().subscribe(e => {
+        this.serverService.getAllEvents().subscribe(e => {
             this.events = e;
             //console.log(this.events);
         });

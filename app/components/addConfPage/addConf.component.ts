@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ServerService, Event } from '../../services/server.service'; 
 
 @Component({
     moduleId: module.id,
@@ -9,6 +10,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 
 //eventName,eventImage,eventAddress,eventDate,eventDescription
 export class AddConfPage {
+    message: string = "";
+
     public addConfForm = this.fb.group({
         eventName: ["", Validators.required],
         eventImage: ["", Validators.required],
@@ -17,18 +20,31 @@ export class AddConfPage {
         eventDescription: ["", Validators.required],
     });
 
-    constructor(public fb: FormBuilder){ }
+    constructor(public fb: FormBuilder, private server: ServerService){ }
 
     addConf(event: any){
-        console.log(event);
+        console.log(this.addConfForm.value);
+        //this.server.addEvent();
+        this.server.addEvent({
+            "eventName": this.addConfForm.value.eventName,
+            "organizer" : this.server.currentUser.googleID, 
+            "address" : this.addConfForm.value.eventAddress,
+            "date" : this.addConfForm.value.eventDate,
+            "attendees" : this.server.currentUser.googleID,
+            "image" : this.addConfForm.value.eventImage,
+            "description": this.addConfForm.value.eventDescription
+        }).subscribe(e => {
+            console.log(e);
+            this.message = "Event Added: " + e.eventID;
+        })
     }
 
-    ngAfterViewInit(){
+    /*ngAfterViewInit(){
         window['jQuery']('.datepicker').pickadate({
             selectMonths: true,
             selectYears: 15
         });
-    }
+    }*/
  } 
  
 

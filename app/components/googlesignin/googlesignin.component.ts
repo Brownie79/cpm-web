@@ -1,4 +1,5 @@
 import {Component,NgZone} from "@angular/core";
+import {ServerService, User} from '../../services/server.service';
 
 // Google's login API namespace
 declare var gapi:any;
@@ -6,23 +7,27 @@ declare var gapi:any;
 @Component({
     moduleId: module.id,
     selector: "gSignIn",
-    templateUrl: "googlesignin.html"
+    templateUrl: "googlesignin.html",
 })
+
 export class GoogleSignIn {
   googleLoginButtonId = "google-login-button";
   googleUser: any;
-  user: User = {
+  /*user: User = {
       googleID: "",
       fName: "",
       lName: "",
       email: "",
-      proPic: ""
-    };
+      proPic: "",
+      conferences: ""
+    };*/
   isLoggedIn: boolean = false;
+  userFirstName: string;
 
-  constructor(private _zone: NgZone) {
+  constructor(private _zone: NgZone, public server: ServerService) {
     //console.log(this);
   }
+  
 
   // Angular hook that allows for interaction with elements inserted by the
   // rendering of a view.
@@ -36,16 +41,17 @@ export class GoogleSignIn {
     //console.log(User);
     this._zone.run(() => {
       //console.log(User.getAuthResponse().id_token);
-      console.log(this.user)
       this.googleUser = User;
-      this.user.googleID = User.getAuthResponse().id_token;
-      
-      let basicProfile = User.getBasicProfile();
-      this.user.fName = basicProfile.getGivenName();
-      this.user.lName = basicProfile.getFamilyName();
-      this.user.proPic = basicProfile.getImageUrl();
-      this.user.email = basicProfile.getEmail();
       this.isLoggedIn = true;
+      this.userFirstName = User.getBasicProfile().getGivenName();
+      this.server.login({
+        googleID: User.getAuthResponse().id_token,
+        fName: User.getBasicProfile().getGivenName(),
+        lName: User.getBasicProfile().getFamilyName(),
+        proPic: User.getBasicProfile().getImageUrl(),
+        email: User.getBasicProfile().getEmail(),
+        conferences: "",
+      });
     });
   }
 
@@ -62,13 +68,6 @@ export class GoogleSignIn {
 
   signOut() {
     this.googleUser.disconnect().then(function(){});    
+    //this.renderGButton();
   }
-}
-
-interface User{
-  googleID: string;
-  fName: string;
-  lName: string;
-  proPic: string;
-  email: string;
 }

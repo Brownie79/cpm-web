@@ -7,18 +7,23 @@
     }
 </style>
 
-<form class="container addconf" [ngFormModel]="addConfForm" (ngSubmit)="addConf($event)">
+<form class="container addconf" [formGroup]="addConfForm" (ngSubmit)="addConf($event)">
     <div class="row">
         <div class="input-field col s8">
             <input id="eventN" type="text" class="validate" formControlName="eventName">
             <label for="event_name">Event Name</label>
         </div>
-        <div class="file-field input-field right">
+        <div class="input-field col s4">
+            <input id="eventImg" type="text" class="validate" formControlName="eventImage">
+            <label for="event_image">Imgur URL</label>
+        </div>
+
+        <!--<div class="file-field input-field right">
             <div class="btn">
                 <span>Event Image Upload</span>
                 <input type="file" formControlName="eventImage">
             </div>
-        </div>
+        </div>-->
     </div>
     
     <div class="row">
@@ -27,7 +32,8 @@
             <label for="event_address">Address</label>
         </div>
         <div class="input-field col s4">
-            <input type="date" class="datepicker" formControlName="eventDate">
+            <input id="eventDate" type="text" class="validate" formControlName="eventDate">
+            <!--<input id="eventDate" type="text" class="datepicker" formControlName="eventDate">-->
             <label for="event_date">Event Date </label>
         </div>
     </div>
@@ -44,6 +50,10 @@
             Add Conference
             <i class="material-icons right">send</i> 
         </button>
+    </div>
+
+    <div *ngIf="message != ''" class="row center card-panel teal">
+        <p class="center white-text ">{{message}}</p>
     </div>
 </form>
 

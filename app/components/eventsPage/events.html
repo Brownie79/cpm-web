@@ -16,16 +16,18 @@
         <span class="card-title activator grey-text text-darken-4">
         {{event.name}}<i class="material-icons right">more_vert</i>
         </span>
-        <p><a href={{event.register_link}}>Register</a></p>
+        <p><a>{{event.eventName}}</a></p>
     </div>
     <div class="card-reveal">
         <span class="card-title grey-text text-darken-4">{{event.eventName}}<i class="material-icons right">close</i></span>
-        <p>
+        <p class="blue-text">
             Event Name: {{event.eventName}} <br />
             Date: {{event.date}} <br />
             Address: {{event.address}} <br />
             Description: {{event.description}} <br />
         </p>
+
+        <div class="divider"></div>
     </div>
 </div>
 
