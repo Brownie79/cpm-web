@@ -6,30 +6,73 @@
     margin-top: 3%;
     display: inline-block;
 }
+.input-field{
+    color:white;
+}
+.search-container{
+    width:80%;
+    margin-top: 10px;
+    float: right;
+}
+.sbtn{
+    margin-top: 10px;
+}
 </style>
 
-<div class="card" *ngFor="let event of events">
-    <div class="card-image waves-effect waves-block waves-light">
-        <img class="activator" src={{event.image}}>
+<div class="row center search-container">
+    <div class="col s8 input-field">
+        <input id="searchString" type="text" (change)="search($event.target.value)">
+        <label for="search">Search by Name or ID</label>
     </div>
-    <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4">
-        {{event.name}}<i class="material-icons right">more_vert</i>
-        </span>
-        <p><a>{{event.eventName}}</a></p>
-    </div>
-    <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4">{{event.eventName}}<i class="material-icons right">close</i></span>
-        <p class="blue-text">
-            Event Name: {{event.eventName}} <br />
-            Date: {{event.date}} <br />
-            Address: {{event.address}} <br />
-            Description: {{event.description}} <br />
-        </p>
+    <button class="col s1 card-panel btn valign black sbtn"><a><i class="material-icons">search</i></a></button>
+    
+    
+    <!--
+    <div class="col s2 btn sbtn" (click)="search('id')">ID Search</div>
+    <div class="col s2 btn sbtn" (click)="search('name')">Name Search</div>
+    -->
+</div>
 
-        <div class="divider"></div>
+<div>
+    <div class="card" *ngFor="let event of events">
+        <div class="card-image waves-effect waves-block waves-light">
+            <img class="activator" src={{event.image}}>
+        </div>
+        <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4">
+            {{event.name}}<i class="material-icons right">more_vert</i>
+            </span>
+            <p><a>{{event.eventName}}</a></p>
+        </div>
+        <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">{{event.eventName}}<i class="material-icons right">close</i></span>
+            
+            <div class="center">
+                <div *ngIf="attending() == false" 
+                    class="card-panel teal btn white-text waves-effect waves-light"
+                    (click)="joinEvent(event._id)"
+                    >
+                    RSVP
+                </div>
+                <div *ngIf="attending() == true" 
+                    class="card-panel blue btn white-text waves-effect waves-light"
+                    (click)="leaveEvent(event._id)">
+                    Leave Event
+                </div>
+            </div>
+
+            <p class="blue-text">
+                Event Name: {{event.eventName}} <br />
+                Date: {{event.date}} <br />
+                Address: {{event.address}} <br />
+                Description: {{event.description}} <br />
+            </p>
+            <div class="divider"></div>
+            <p class="red-text">Event ID: {{event._id}}</p>
+        </div>
     </div>
 </div>
+
 
 <!--
 {

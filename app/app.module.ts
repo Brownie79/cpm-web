@@ -2,7 +2,7 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule }    from '@angular/http'
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 //Bootstrap Components
 import { AppComponent }  from './app.component';
@@ -21,7 +21,7 @@ import { ServerService } from './services/server.service';
 
 
 @NgModule({
-  imports:      [ BrowserModule, HttpModule, Routing, ReactiveFormsModule ],
+  imports:      [ BrowserModule, HttpModule, Routing, ReactiveFormsModule, FormsModule ],
   declarations: [ AppComponent, NavBar, EventsPage, GoogleSignIn, AddConfPage ],
   providers:    [ ServerService ],
   bootstrap:    [ AppComponent ]

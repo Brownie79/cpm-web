@@ -1,6 +1,8 @@
-<li id="googleLoginButton" *ngIf="isLoggedIn == false" id="google-login-button" class="g-signin2" data-onsuccess="onSignIn" style="margin-top: 5px"></li>
+<li id="googleLoginButton" *ngIf="isLoggedIn == 0" id="google-login-button" class="g-signin2" data-onsuccess="onSignIn" style="margin-top: 5px"></li>
 
-<li *ngIf="isLoggedIn"><a routerLink="/addEvent">Add Event</a></li>
-<li *ngIf="isLoggedIn"><a >My Events</a></li>
-<li *ngIf="isLoggedIn"><a >{{userFirstName}}</a></li>
-<li *ngIf="isLoggedIn"><a (click)="signOut(); isLoggedIn = false;" href="#">Log Out</a></li>
+<li *ngIf="isLoggedIn == 1"><a routerLink="/addEvent">Add Event</a></li>
+<!--<li *ngIf="isLoggedIn"><a >My Events</a></li>-->
+<li *ngIf="isLoggedIn == 1"><a >{{userFirstName}}</a></li>
+<li *ngIf="isLoggedIn == 1"><a (click)="signOut(); isLoggedIn = 2; refreshPage();" href="#">Log Out</a></li>
+
+<!--<li *ngIf="isLoggedIn ==2"><a (click)="refreshPage()">Please Refresh The Page</a></li>-->

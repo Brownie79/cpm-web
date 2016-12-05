@@ -21,7 +21,7 @@ export class GoogleSignIn {
       proPic: "",
       conferences: ""
     };*/
-  isLoggedIn: boolean = false;
+  isLoggedIn: number = 0;
   userFirstName: string;
 
   constructor(private _zone: NgZone, public server: ServerService) {
@@ -42,7 +42,7 @@ export class GoogleSignIn {
     this._zone.run(() => {
       //console.log(User.getAuthResponse().id_token);
       this.googleUser = User;
-      this.isLoggedIn = true;
+      this.isLoggedIn = 1;
       this.userFirstName = User.getBasicProfile().getGivenName();
       this.server.login({
         googleID: User.getAuthResponse().id_token,
@@ -68,6 +68,9 @@ export class GoogleSignIn {
 
   signOut() {
     this.googleUser.disconnect().then(function(){});    
-    //this.renderGButton();
+  }
+
+  refreshPage(){
+    window.location.reload();
   }
 }
