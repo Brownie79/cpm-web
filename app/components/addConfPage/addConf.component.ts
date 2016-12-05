@@ -27,7 +27,7 @@ export class AddConfPage {
         //this.server.addEvent();
         this.server.addEvent({
             "eventName": this.addConfForm.value.eventName,
-            "organizer" : this.server.currentUser.googleID, 
+            "organizer" : this.server.currentUser.email, 
             "address" : this.addConfForm.value.eventAddress,
             "date" : this.addConfForm.value.eventDate,
             "attendees" : this.server.currentUser.googleID,

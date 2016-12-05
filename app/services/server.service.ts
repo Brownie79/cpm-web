@@ -32,6 +32,23 @@ export class ServerService {
             .map(res => res.json());
     }
 
+    joinEvent(confID: string){
+        if(this.currentUser == null){ console.log("no user"); return; }
+        let req = {"userEmail": this.currentUser.email, "confID": confID};
+        console.log(req);
+        return this.http.post(this.url+'/joinEvent',  req)
+            .map(res => res.json());
+    }
+
+    leaveEvent(confID: string){
+        if(this.currentUser == null){ console.log("no user"); return; }
+        let req = {"userEmail": this.currentUser.email, "confID": confID};
+        console.log(req);
+        return this.http.post(this.url+'/leaveEvent',  req)
+            .map(res => res.json());
+    }
+
+
 }
 
 export interface Event{
@@ -45,7 +62,7 @@ export interface Event{
 }
 
 export interface User{
-  googleID: string;
+  //googleID: string;
   fName: string;
   lName: string;
   proPic: string;

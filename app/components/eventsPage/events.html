@@ -48,13 +48,13 @@
             <span class="card-title grey-text text-darken-4">{{event.eventName}}<i class="material-icons right">close</i></span>
             
             <div class="center">
-                <div *ngIf="attending() == false" 
+                <div *ngIf="attending(event.attendees) == false" 
                     class="card-panel teal btn white-text waves-effect waves-light"
                     (click)="joinEvent(event._id)"
                     >
                     RSVP
                 </div>
-                <div *ngIf="attending() == true" 
+                <div *ngIf="attending(event.attendees) == true" 
                     class="card-panel blue btn white-text waves-effect waves-light"
                     (click)="leaveEvent(event._id)">
                     Leave Event
@@ -69,6 +69,8 @@
             </p>
             <div class="divider"></div>
             <p class="red-text">Event ID: {{event._id}}</p>
+            <p class="red-text">Event Attendees: {{event.attendees}}</p>
+            
         </div>
     </div>
 </div>

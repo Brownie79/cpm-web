@@ -45,7 +45,7 @@ export class GoogleSignIn {
       this.isLoggedIn = 1;
       this.userFirstName = User.getBasicProfile().getGivenName();
       this.server.login({
-        googleID: User.getAuthResponse().id_token,
+        //googleID: User.getAuthResponse().id_token,
         fName: User.getBasicProfile().getGivenName(),
         lName: User.getBasicProfile().getFamilyName(),
         proPic: User.getBasicProfile().getImageUrl(),
