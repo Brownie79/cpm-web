@@ -30,7 +30,7 @@ export class AddConfPage {
             "organizer" : this.server.currentUser.email, 
             "address" : this.addConfForm.value.eventAddress,
             "date" : this.addConfForm.value.eventDate,
-            "attendees" : this.server.currentUser.googleID,
+            "attendees" : this.server.currentUser.email,
             "image" : this.addConfForm.value.eventImage,
             "description": this.addConfForm.value.eventDescription
         }).subscribe(e => {
